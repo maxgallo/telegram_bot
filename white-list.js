@@ -5,6 +5,7 @@ module.exports = {
     26: "Raichu",
     38: "Ninetales",
     59: "Arcanine",
+    108: "Lichitung",
     112: "Mr. Mime",
     123: "Scyther",
     125: "Electabuzz",
@@ -12,6 +13,7 @@ module.exports = {
     130: "Gyrados",
     131: "Lapras",
     132: "Ditto",
+    133: "Eevee",
     134: "Vaporeon",
     135: "Jolteon",
     136: "Flareon",
@@ -25,5 +27,6 @@ module.exports = {
     146: "Moltres",
     149: "Dragonite",
     150: "Mewtwo",
-    151: "Mew"
+    151: "Mew",
+    60: "test"
 };
