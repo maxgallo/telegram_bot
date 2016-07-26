@@ -63,6 +63,9 @@ class StartController extends TelegramBaseController {
             $.sendMessage('Your radar is already enabled')
         } else {
             $.sendMessage('Radar mode is now Enabled')
+            // perform a simple scan immediately
+            this.scan($);
+            // set interval for future scans
             this.chatIdIntervals[chatId] = setInterval( () => this.scan($), constants.SCAN_FREQUENCY);
         }
     }
