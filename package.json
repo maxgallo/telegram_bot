@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/maxgallo/telegram_bot#readme",
   "dependencies": {
+    "cloudscraper": "^1.3.0",
     "request": "^2.74.0",
     "telegram-node-bot": "^3.0.10"
   }
