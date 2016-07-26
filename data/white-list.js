@@ -27,6 +27,6 @@ module.exports = {
     146: "Moltres",
     149: "Dragonite",
     150: "Mewtwo",
-    151: "Mew",
-    60: "test"
+    151: "Mew"
+    //60: "test"
 };

@@ -1,14 +1,16 @@
-const request = require('request');
+//const request = require('request');
 const constants = require('../constants');
 const Pokemon = require('../models/Pokemon');
 const util = require('util');
+const cloudscraper = require('cloudscraper');
 
 function search(lat = constants.MY_HOUSE_LAT, lng = constants.MY_HOUSE_LNG){
 
     const url = constants.POKEVISION_URL.replace('LAT', lat).replace('LNG', lng);
 
     return new Promise( (resolve, reject) => {
-        request(url, function (error, response, body) {
+        //request(url, function (error, response, body) {
+        cloudscraper.get(url, function (error, response, body) {
             if (!error && response.statusCode == 200) {
                 var parsedBody, pokemonArray = [];
                 try {
@@ -20,17 +22,17 @@ function search(lat = constants.MY_HOUSE_LAT, lng = constants.MY_HOUSE_LNG){
                     ){
                         resolve(parsedBody.pokemon.map( pokemonData => new Pokemon(pokemonData)));
                     } else {
-                        throw('The format of the response wasn\'t correct.');
+                        reject('The format of the response wasn\'t correct.');
                     }
                 } catch (err) {
-                    throw('An error occurred while parsing the body response');
+                    reject('An error occurred while parsing the body response\n\n' + err);
                 }
 
                 if(parsedBody && parsedBody.status === 'success'){
                     resolve(parsedBody);
                 }
             } else {
-                throw new Error('The server did not respond in time');
+                reject('Http status: ' + response.statusCode);
             }
         })
     });

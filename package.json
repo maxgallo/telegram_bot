@@ -10,7 +10,7 @@
     "type": "git",
     "url": "git+https://github.com/maxgallo/telegram_bot.git"
   },
-  "author": "",
+  "author": "maxgallo",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/maxgallo/telegram_bot/issues"
