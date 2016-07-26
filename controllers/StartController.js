@@ -32,7 +32,7 @@ class StartController extends TelegramBaseController {
             // found nothing
             if (showNotFound) {
                 $.sendMessage('I\'m sorry, these aren\'t the Pokémons you\'re looking for.');
-                $.sendPhoto({ url: 'URL', filename: 'http://i3.kym-cdn.com/entries/icons/original/000/018/682/obi-wan.jpg'});
+                //$.sendPhoto({ url: 'URL', filename: 'http://i3.kym-cdn.com/entries/icons/original/000/018/682/obi-wan.jpg'});
             }
         }
     }
@@ -52,7 +52,7 @@ class StartController extends TelegramBaseController {
     }
 
     simpleScanHandler($){
-        $.sendMessage('I\'m performing a simple scan for you...');
+        $.sendMessage('Let\'s do a simple scan...');
         this.scan($, true);
     }
 
