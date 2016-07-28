@@ -20,7 +20,7 @@ function search(lat = constants.MY_HOUSE_LAT, lng = constants.MY_HOUSE_LNG){
                         && parsedBody.pokemon
                         && util.isArray(parsedBody.pokemon)
                     ){
-                        console.log(`---------------got ${parsedBody.pokemon.length} pokemons`);
+                        //console.log(`---------------got ${parsedBody.pokemon.length} pokemons`);
                         resolve(parsedBody.pokemon.map( pokemonData => new Pokemon(pokemonData)));
                     } else {
                         reject('The format of the response wasn\'t correct.');
