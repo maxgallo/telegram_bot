@@ -29,6 +29,6 @@ module.exports = {
     148: "Dragonair",
     149: "Dragonite",
     150: "Mewtwo",
-    151: "Mew",
-    129: 'magikarp-test'
+    151: "Mew"
+    //129: 'magikarp-test'
 };
