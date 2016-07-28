@@ -25,8 +25,10 @@ module.exports = {
     144: "Articuno",
     145: "Zapdos",
     146: "Moltres",
+    147: "Dratini",
+    148: "Dragonair",
     149: "Dragonite",
     150: "Mewtwo",
-    151: "Mew"
-    //60: "test"
+    151: "Mew",
+    129: 'magikarp-test'
 };

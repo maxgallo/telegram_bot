@@ -11,7 +11,7 @@ const constants = {
     POKEVISION_URL : 'https://pokevision.com/map/data/LAT/LNG',
     MY_HOUSE_LAT   : '51.51042851560268',
     MY_HOUSE_LNG   : '-0.12191176414489746',
-    SCAN_FREQUENCY : 2*60*1000,
+    SCAN_FREQUENCY : 10*1000,
     route          : route
 }
 

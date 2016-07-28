@@ -11,7 +11,7 @@ function search(lat = constants.MY_HOUSE_LAT, lng = constants.MY_HOUSE_LNG){
     return new Promise( (resolve, reject) => {
         //request(url, function (error, response, body) {
         cloudscraper.get(url, function (error, response, body) {
-            if (!error && response.statusCode == 200) {
+            if (!error && response && response.statusCode == 200) {
                 var parsedBody, pokemonArray = [];
                 try {
                     parsedBody = JSON.parse(body);
@@ -20,6 +20,7 @@ function search(lat = constants.MY_HOUSE_LAT, lng = constants.MY_HOUSE_LNG){
                         && parsedBody.pokemon
                         && util.isArray(parsedBody.pokemon)
                     ){
+                        console.log(`---------------got ${parsedBody.pokemon.length} pokemons`);
                         resolve(parsedBody.pokemon.map( pokemonData => new Pokemon(pokemonData)));
                     } else {
                         reject('The format of the response wasn\'t correct.');
