@@ -71,11 +71,11 @@ class StartController extends TelegramBaseController {
         this.storeNotifiedPokemons(chatId, filteredArrayDuplicate);
 
         //console.log('2 - post duplicates: ', filteredArray.length);
-        return Promise.resolve(filteredArray);
+        return filteredArray;
     }
 
     scan($, showNotFound = false) {
-        $.sendChatAction('find_location');
+        //$.sendChatAction('find_location');
         return searchService()
             .then(
                 pokemonArray => this.filter(pokemonArray, $.chatId),
