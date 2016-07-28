@@ -51,38 +51,40 @@ class StartController extends TelegramBaseController {
     }
 
 
-    filter(pokemonArray, chatId){
+    filter(pokemonArray, chatId, simpleScanMode){
         if(!pokemonArray || !util.isArray(pokemonArray) || !pokemonArray.length){
             return [];
         }
         let filteredArray = filterService.whiteList(pokemonArray);
         if( !filteredArray.length) { return [] };
 
-        const filteredArrayDuplicate = filteredArray.slice();
+        if(!simpleScanMode) {
+            const filteredArrayDuplicate = filteredArray.slice();
 
-        //console.log('pre already notified: ', filteredArray.length);
-        filteredArray     = filterService.alreadyNotified(filteredArray, this.radarChatSet[chatId]);
-        if( !filteredArray.length) { return [] };
+            //console.log('pre already notified: ', filteredArray.length);
+            filteredArray     = filterService.alreadyNotified(filteredArray, this.radarChatSet[chatId]);
+            if( !filteredArray.length) { return [] };
+
+            this.storeNotifiedPokemons(chatId, filteredArrayDuplicate);
+        }
 
         //console.log('pre duplicates: ', filteredArray.length);
         filteredArray     = filterService.duplicates(filteredArray);
-
         //console.log('post duplicates: ', filteredArray.length);
-        this.storeNotifiedPokemons(chatId, filteredArrayDuplicate);
 
         //console.log('2 - post duplicates: ', filteredArray.length);
         return filteredArray;
     }
 
-    scan($, showNotFound = false) {
+    scan($, simpleScanMode = false) {
         //$.sendChatAction('find_location');
         return searchService()
             .then(
-                pokemonArray => this.filter(pokemonArray, $.chatId),
+                pokemonArray => this.filter(pokemonArray, $.chatId, simpleScanMode),
                 err => { throw(err)}
             )
             .then(
-                filteredPokemonArray => this.sendAvailablePokemonMessage($, filteredPokemonArray, showNotFound),
+                filteredPokemonArray => this.sendAvailablePokemonMessage($, filteredPokemonArray, simpleScanMode),
                 err => { throw(err)}
             )
             .catch( err => {
