@@ -37,14 +37,21 @@ class StartController extends TelegramBaseController {
                         pokemon.latitude,
                         pokemon.longitude,
                         pokemon.name,
-                        'Expires at: ' + pokemon.getReadableExpiration()
+                        'Expires at: ' + pokemon.getReadableExpiration(),
+                        {
+                            disable_notification: true
+                        }
                     )
                 })
             }, 100);
         } else {
             // found nothing
             if (showNotFound) {
-                $.sendMessage('I\'m sorry, these aren\'t the Pokémons you\'re looking for.');
+                $.sendMessage('I\'m sorry, these aren\'t the Pokémons you\'re looking for.',
+                    {
+                        disable_notification: true
+                    }
+                )
                 //$.sendPhoto({ url: 'URL', filename: 'http://i3.kym-cdn.com/entries/icons/original/000/018/682/obi-wan.jpg'});
             }
         }
@@ -94,7 +101,7 @@ class StartController extends TelegramBaseController {
     }
 
     simpleScanHandler($){
-        $.sendMessage('Let\'s do a simple scan...');
+        $.sendMessage('Let\'s do a simple scan...', { disable_notification: true });
         this.scan($, true);
     }
 
@@ -102,9 +109,9 @@ class StartController extends TelegramBaseController {
     enableRadarHandler($) {
         const chatId = $.chatId;
         if(!!this.radarChatSet[chatId]) {
-            $.sendMessage('Your radar is already enabled')
+            $.sendMessage('Your radar is already enabled', { disable_notification: true })
         } else {
-            $.sendMessage('Radar mode is now Enabled')
+            $.sendMessage('Radar mode is now Enabled', { disable_notification: true })
             // perform a simple scan immediately
             this.scan($, true);
             // set interval for future scans
@@ -116,12 +123,12 @@ class StartController extends TelegramBaseController {
     disableRadarHandler($) {
         const chat = this.radarChatSet[$.chatId];
         if(!chat) {
-            $.sendMessage('You radar was already Disabled')
+            $.sendMessage('You radar was already Disabled', { disable_notification: true })
         } else {
             try {
                 clearInterval(chat.intervalId);
             } catch(e) {}
-            $.sendMessage('Radar mode is now Disabled');
+            $.sendMessage('Radar mode is now Disabled', { disable_notification: true });
             delete this.radarChatSet[$.chatId];
         }
 
