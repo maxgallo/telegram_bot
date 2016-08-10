@@ -4,7 +4,7 @@ const util = require('util');
 function whiteList(pokemonArray) {
     return pokemonArray.filter(function(pokemon){
         if (
-            pokemon.isAlive
+            pokemon.isAlive()
             && !!pokemonWhiteList[pokemon.pokedexId]
         ) {
             return true;

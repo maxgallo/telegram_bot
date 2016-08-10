@@ -1,9 +1,11 @@
 module.exports = {
     3: "Venusaur",
     6: "Charizard",
+    //7: "Squirtle",
     9: "Blastoise",
     26: "Raichu",
     38: "Ninetales",
+    //43: "Oddish",
     59: "Arcanine",
     108: "Lichitung",
     112: "Mr. Mime",

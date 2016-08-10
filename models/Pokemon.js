@@ -2,13 +2,17 @@ const pokedex = require('../data/pokedex');
 
 class Pokemon {
     constructor(data) {
-        this.id             = data.id;
-        this.pokedexId      = data.pokemonId; // string
+        this.pokedexId      = ''+data.pokedexId; // string
         this.name           = pokedex[this.pokedexId];
-        this.isAlive        = data.is_alive;  // boolean
         this.latitude       = data.latitude;
         this.longitude      = data.longitude;
-        this.expirationTime = data.expiration_time;
+        this.expirationTime = data.expires;
+        this.id             = this.generateId();
+    }
+
+    generateId(){
+        return '' + this.pokedexId + this.latitude + this.longitude;
+
     }
 
     getReadableExpiration(){
@@ -17,6 +21,11 @@ class Pokemon {
         var mins  = ("0" + d.getMinutes()).slice(-2);
         return hours + ":" + mins;
     }
+
+    isAlive(){
+        return (this.expirationTime * 1000 - new Date().getTime() ) > 0;
+    }
+
 }
 
 module.exports = Pokemon;

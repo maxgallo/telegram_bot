@@ -69,17 +69,17 @@ class StartController extends TelegramBaseController {
 
         if(!simpleScanMode) {
             //console.log('pre already notified: ', filteredArray.length);
-            filteredArray     = filterService.alreadyNotified(filteredArray, this.radarChatSet[chatId]);
+            filteredArray = filterService.alreadyNotified(filteredArray, this.radarChatSet[chatId]);
             if( !filteredArray.length) { return [] };
         }
 
         this.storeNotifiedPokemons(chatId, filteredArrayDuplicate);
-
+    /*
         //console.log('pre duplicates: ', filteredArray.length);
         filteredArray     = filterService.duplicates(filteredArray);
         //console.log('post duplicates: ', filteredArray.length);
-
         //console.log('2 - post duplicates: ', filteredArray.length);
+    */
         return filteredArray;
     }
 
